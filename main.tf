@@ -1,14 +1,14 @@
-module "service_account" {
-  source = "./Modules/Service-Account"
-  sa_name = "sa-${var.ENV_NAME}-${var.LOCATION}-${var.NUM_COUNT}"
-}
+# module "service_account" {
+#   source = "./Modules/Service-Account"
+#   sa_name = "sa-${var.ENV_NAME}-${var.LOCATION}-${var.NUM_COUNT}"
+# }
 
 
 module "GKE" {
   source = "./Modules/Cluster"
   cluster_name =  "gke-${var.ENV_NAME}-${var.LOCATION}-${var.NUM_COUNT}"
   location = var.LOCATION
-  sa_name = module.service_account.service_account
+  # sa_name = module.service_account.service_account
   depends_on = [ module.service_account ]
 }
 
