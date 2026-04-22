@@ -9,7 +9,7 @@ module "GKE" {
   cluster_name =  "gke-${var.ENV_NAME}-${var.LOCATION}-${var.NUM_COUNT}"
   location = var.LOCATION
   # sa_name = module.service_account.service_account
-  depends_on = [ module.service_account ]
+  # depends_on = [ module.service_account ]
 }
 
 module "node_pool" {
