@@ -5,9 +5,15 @@ terraform {
       version = "7.28.0"
     }
   }
+
+  backend "gcs" {
+  bucket  = "terraform-state-bucket"
+  prefix  = "gke/dev"
+}
 }
 
 provider "google" {
   project     = var.PROJECT_ID
   region      = var.LOCATION
 }
+
