@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "gcs" {
-  bucket  = "terraform-state-bucket"
+  bucket  = "cloud-works-terraform-state-bucket"
   prefix  = "gke/dev"
 }
 }
