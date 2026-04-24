@@ -13,9 +13,9 @@ resource "google_container_node_pool" "node_pool" {
   node_config {
     preemptible  = true
     machine_type = "e2-standard-2"
-    # service_account = var.node_name
-    # oauth_scopes = [
-    #    "https://www.googleapis.com/auth/cloud-platform"
-    # ]
+    service_account = var.sa_name
+    oauth_scopes = [
+       "https://www.googleapis.com/auth/cloud-platform"
+    ]
   }
 }
