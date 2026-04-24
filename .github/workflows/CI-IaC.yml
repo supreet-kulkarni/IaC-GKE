@@ -34,7 +34,7 @@ jobs:
           service_account: ${{ secrets.GCP_SA_EMAIL }}
           project_id: ${{ secrets.GCP_PROJECT_ID }}
 
-      # ☁️ Setup gcloud CLI (optional but recommended)
+      # Setup gcloud CLI (optional but recommended)
       - name: Setup gcloud
         uses: google-github-actions/setup-gcloud@v2
 
