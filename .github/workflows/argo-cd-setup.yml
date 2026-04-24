@@ -1,10 +1,8 @@
 name: Setup ArgoCD
 
-on:
-  push:
-    branches:
-      - feature/argo-cd-setup
-
+on: 
+   workflow_dispatch:
+    
 jobs:
   Install-ArgoCD:
     runs-on: ubuntu-latest
