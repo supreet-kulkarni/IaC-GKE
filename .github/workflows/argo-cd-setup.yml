@@ -1,0 +1,57 @@
+name: Setup ArgoCD
+
+on:
+  push:
+    branches:
+      - feature/argo-cd-setup
+
+jobs:
+  Install-ArgoCD:
+    runs-on: ubuntu-latest
+    environment: dev
+
+    permissions:
+      id-token: write
+      contents: read
+
+    env:
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      CLUSTER_NAME: ${{ vars.GKE_CLUSTER }}
+      CLUSTER_LOCATION: ${{ vars.LOCATION }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Authenticate to GCP (OIDC)
+      - name: Auth to GCP
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
+          service_account: ${{ secrets.GCP_SA_EMAIL }}
+
+      # Setup gcloud
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      #  Get GKE credentials
+      - name: Get GKE credentials
+        uses: google-github-actions/get-gke-credentials@v2
+        with:
+          cluster_name: ${{ env.CLUSTER_NAME }}
+          location: ${{ env.CLUSTER_LOCATION }}
+          project_id: ${{ env.PROJECT_ID }}
+
+      #  Create the namespace 
+      - name: Create namespace
+        run: kubectl create namespace argocd
+
+      # Install the ArgoCD
+      - name: Install the ArgoCD
+        run: kubectl apply -n argocd --server-side --force-conflicts -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+      
+      - name: Setup ArgoCD
+        run: |
+            kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+            kubectl get svc argocd-server -n argocd -o=jsonpath='{.status.loadBalancer.ingress[0].ip}'
+  
