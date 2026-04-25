@@ -44,6 +44,7 @@ gcloud iam workload-identity-pools providers create-oidc "github-provider"\
   3. **Create Service Account**
   ```
   gcloud iam service-accounts create githubactions-sa   --project=PROJECT_ID
+  ```
 
 `PROJECT_ID`
   Add the GCP project Id
@@ -86,7 +87,7 @@ gcloud iam service-accounts add-iam-policy-binding  githubactions-sa@PROJECT_ID.
 **Secrets**
 | Name             | Description                         |
 | ---------------- | ----------------------------------- |
-| `WIF_PROVIDER`   | Workload Identity Provider resource <br> projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL_NAME/providers/PROVIDER_NAME |
+| `WIF_PROVIDER`   | Workload Identity Provider resource <br> projects/PROJECT_NUMBER/locations/global/workloadIdentityPools POOL_NAME/providers/PROVIDER_NAME |
 | `GCP_SA_EMAIL`   | Service Account email               |
 | `GCP_PROJECT_ID` | GCP Project ID                      |
 
