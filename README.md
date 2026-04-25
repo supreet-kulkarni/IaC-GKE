@@ -1,5 +1,5 @@
 # GKE Deployment with GitHub Actions (OIDC + Terraform + GitOp
-This repository demonstrates a secure, production-ready CI/CD pipeline to provision and deploy applications on **Google Kubernetes Engine using GitHub Actions, Terraform, and Argo CD — without using any long-lived credentials.
+This repository demonstrates a secure, production-ready CI/CD pipeline to provision and deploy applications on `Google Kubernetes Engine` using GitHub Actions, Terraform, and Argo CD — without using any long-lived credentials.
 
 ## Key Features
 - No Service Account Keys (OIDC-based authentication)
@@ -84,6 +84,7 @@ gcloud iam service-accounts add-iam-policy-binding  githubactions-sa@PROJECT_ID.
 ## GitHub Actions Configuration
 - Create the new Environment and give the `dev` (settings->environments->new environment)
 - create the below Secrets and variables
+
 **Secrets**
 | Name             | Description                         |
 | ---------------- | ----------------------------------- |
