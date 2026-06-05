@@ -1,4 +1,4 @@
-# GKE Deployment with GitHub Actions (OIDC + Terraform + GitOp
+# GKE Deployment with GitHub Actions (OIDC + Terraform + GitOps
 This repository demonstrates a secure, production-ready CI/CD pipeline to provision and deploy applications on `Google Kubernetes Engine` using GitHub Actions, Terraform, and Argo CD — without using any long-lived credentials.
 
 ## Key Features
