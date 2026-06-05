@@ -1,7 +1,7 @@
 module "service_account" {
   source = "./Modules/Service-Account"
   sa_name = "sa-${var.ENV_NAME}-${var.LOCATION}-${var.NUM_COUNT}"
-}
+} 
 
 
 module "GKE" {
